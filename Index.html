@@ -1,0 +1,477 @@
+<!-- NAME POPUP -->
+<div class="popup" id="namePopup">
+
+  <div class="popup-box">
+
+    <h2>Welcome 👋</h2>
+
+    <p>Enter Your Name</p>
+
+    <input type="text" id="username" placeholder="Your Name">
+
+    <button onclick="saveName()">Enter Website</button>
+
+  </div>
+
+</div>
+
+
+
+<!-- SHOW USER NAME -->
+<div id="welcomeUser"></div>
+
+
+
+<style>
+
+/* POPUP */
+
+.popup{
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:rgba(0,0,0,0.8);
+  top:0;
+  left:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.popup-box{
+  background:white;
+  padding:40px;
+  border-radius:15px;
+  text-align:center;
+  width:320px;
+}
+
+.popup-box h2{
+  color:black;
+  margin-bottom:10px;
+}
+
+.popup-box p{
+  color:#444;
+  margin-bottom:20px;
+}
+
+.popup-box input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  margin-bottom:20px;
+  font-size:16px;
+}
+
+.popup-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  background:#00d9ff;
+  color:black;
+  font-size:16px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+#welcomeUser{
+  position:fixed;
+  top:90px;
+  right:20px;
+  background:#00d9ff;
+  color:black;
+  padding:10px 18px;
+  border-radius:10px;
+  font-weight:bold;
+  z-index:999;
+}
+
+</style>
+
+
+
+<script>
+
+function saveName(){
+
+  let name = document.getElementById("username").value;
+
+  if(name == ""){
+    alert("Please Enter Name");
+    return;
+  }
+
+  // SAVE NAME
+  localStorage.setItem("visitorName", name);
+
+  // SHOW NAME
+  document.getElementById("welcomeUser").innerHTML =
+  "Welcome, " + name;
+
+  // HIDE POPUP
+  document.getElementById("namePopup").style.display = "none";
+
+  // SAVE VISITOR LIST
+  let visitors = JSON.parse(localStorage.getItem("allVisitors")) || [];
+
+  visitors.push(name);
+
+  localStorage.setItem("allVisitors", JSON.stringify(visitors));
+
+  console.log("Visitors:", visitors);
+
+}
+
+
+// AUTO LOAD NAME
+
+window.onload = function(){
+
+  let savedName = localStorage.getItem("visitorName");
+
+  if(savedName){
+
+    document.getElementById("welcomeUser").innerHTML =
+    "Welcome, " + savedName;
+
+    document.getElementById("namePopup").style.display = "none";
+
+  }
+
+}
+
+  </script><style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#0b0f19;
+  color:white;
+}
+
+/* HEADER */
+
+header{
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  left:0;
+  background:rgba(15,23,42,0.85);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.logo{
+  font-size:28px;
+  font-weight:700;
+  color:#00d9ff;
+  letter-spacing:2px;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:30px;
+  font-size:16px;
+  transition:0.3s;
+}
+
+nav a:hover{
+  color:#00d9ff;
+}
+
+/* HERO SECTION */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:100px 20px;
+  background:linear-gradient(to right,#0b0f19,#111827);
+}
+
+.hero-content h1{
+  font-size:70px;
+  margin-bottom:15px;
+}
+
+.hero-content h1 span{
+  color:#00d9ff;
+}
+
+.hero-content p{
+  max-width:750px;
+  margin:auto;
+  color:#cbd5e1;
+  font-size:18px;
+  line-height:1.8;
+}
+
+.hero-btn{
+  display:inline-block;
+  margin-top:35px;
+  padding:15px 35px;
+  background:#00d9ff;
+  color:black;
+  text-decoration:none;
+  border-radius:10px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.hero-btn:hover{
+  transform:scale(1.05);
+}
+
+/* SECTION */
+
+section{
+  padding:100px 8%;
+}
+
+.title{
+  text-align:center;
+  font-size:42px;
+  margin-bottom:60px;
+  color:#00d9ff;
+}
+
+/* SERVICES */
+
+.services{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.service-box{
+  background:#111827;
+  padding:35px;
+  border-radius:15px;
+  transition:0.4s;
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.service-box:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 25px rgba(0,217,255,0.15);
+}
+
+.service-box h3{
+  color:#00d9ff;
+  margin-bottom:15px;
+  font-size:24px;
+}
+
+/* PORTFOLIO */
+
+.portfolio{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+
+.portfolio img{
+  width:100%;
+  border-radius:15px;
+  transition:0.4s;
+}
+
+.portfolio img:hover{
+  transform:scale(1.03);
+}
+
+/* CONTACT */
+
+.contact-box{
+  background:#111827;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+}
+
+.contact-box p{
+  margin:15px 0;
+  font-size:18px;
+  color:#cbd5e1;
+}
+
+.social-links a{
+  display:inline-block;
+  margin:10px;
+  padding:12px 25px;
+  background:#00d9ff;
+  color:black;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.social-links a:hover{
+  transform:scale(1.05);
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:25px;
+  background:#111827;
+  color:#94a3b8;
+  margin-top:40px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .hero-content h1{
+    font-size:45px;
+  }
+
+  nav{
+    display:none;
+  }
+
+}
+
+</style>
+
+
+
+<header>
+
+  <div class="logo">TECHWITHAYUSH</div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Portfolio</a>
+    <a href="#">Contact</a>
+  </nav>
+
+</header>
+
+
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h1>Hello, I'm <span>TechWithAyush</span></h1>
+
+    <p>
+      Professional Cinematic Video Editor, AI Designer &
+      Creative Content Creator.
+      All Type Cinematic Video Available.
+    </p>
+
+    <a href="#" class="hero-btn">Hire Me</a>
+
+  </div>
+
+</section>
+
+
+
+<section>
+
+  <h2 class="title">My Services</h2>
+
+  <div class="services">
+
+    <div class="service-box">
+      <h3>Cinematic Editing</h3>
+      <p>Professional cinematic reels and shorts editing.</p>
+    </div>
+
+    <div class="service-box">
+      <h3>Poster Design</h3>
+      <p>Stylish posters for Instagram and branding.</p>
+    </div>
+
+    <div class="service-box">
+      <h3>AI Image Editing</h3>
+      <p>Premium AI edits and social media content.</p>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<section>
+
+  <h2 class="title">Portfolio</h2>
+
+  <div class="portfolio">
+
+    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085">
+
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3">
+
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f">
+
+  </div>
+
+</section>
+
+
+
+<section>
+
+  <h2 class="title">Contact Me</h2>
+
+  <div class="contact-box">
+
+    <p>📞 8262021106</p>
+
+    <p>📧 ayushdarunde60@gmail.com</p>
+
+    <p>📷 @ayush_videography01</p>
+
+    <div class="social-links">
+
+      <a href="https://instagram.com/ayush_videography01">
+        Instagram
+      </a>
+
+      <a href="tel:8262021106">
+        Call Now
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<footer>
+
+  © 2026 TECHWITHAYUSH | All Rights Reserved
+
+  </footer>
