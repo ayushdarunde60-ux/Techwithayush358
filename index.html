@@ -22,7 +22,55 @@
 
 
 
-<style>
+<style>/* Fade In Animation */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(50px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.hero-content,
+.service-box,
+.portfolio img,
+.contact-box{
+  animation:fadeUp 1s ease forwards;
+}
+
+/* Logo Glow */
+.logo{
+  animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{
+    text-shadow:0 0 10px #00d9ff;
+  }
+  to{
+    text-shadow:0 0 25px #00d9ff;
+  }
+}
+
+/* Floating Button */
+.hero-btn{
+  animation:float 3s ease-in-out infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
+
+/* Portfolio Hover Effect */
+.portfolio img:hover{
+  transform:scale(1.08) rotate(2deg);
+  transition:0.4s;
+}
 
 /* POPUP */
 
